@@ -3,7 +3,6 @@ import WaterfallChart from "./WaterfallChart";
 import Graph from "./Graph";
 import PieChart from "./PieChart";
 function IAlphaChart({ chartData, chartType, labels, sales2021, sales2022 }) {
-  console.log(chartType);
   const options = {
     title: {
       text: "Line Chart",
@@ -52,7 +51,14 @@ function IAlphaChart({ chartData, chartType, labels, sales2021, sales2022 }) {
   };
   return (
     <>
-      {chartType === "waterfall" && <WaterfallChart chartData={chartData} />}
+      {chartType === "waterfall" && (
+        <WaterfallChart
+          chartData={chartData}
+          sales2021={sales2021}
+          sales2022={sales2022}
+          labels={labels}
+        />
+      )}
       {chartType !== "waterfall" && chartType !== "pie" && (
         <Graph options={options} />
       )}
