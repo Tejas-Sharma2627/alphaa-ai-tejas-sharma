@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState, useEffect } from "react";
+import AlphaChart from "./components/AlphaChart";
+import { CircularProgress } from "@mui/material";
+import useFetch from "./customHook/useFetch";
 function App() {
+  const { isLoading, apiData, apiError } = useFetch(
+    "GET",
+    "https://run.mocky.io/v3/e2ffac92-48e0-4826-a59f-bf76fc727383",
+    {}
+  );
+
+  const [chartData, setChartData] = useState(apiData);
+  const [loading, setLoading] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AlphaChart chartData={chartData}/>
     </div>
   );
 }
